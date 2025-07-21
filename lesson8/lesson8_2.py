@@ -32,11 +32,17 @@ def play_game():
         except Exception as e:
             print(e)
 
-play_count = 0
-while(True):
-    play_count += 1
-    play_game()
-    is_continue = input("您還要繼續嗎(y,n)?")
-    if is_continue == "n":
-        break
-print("遊戲結束")
+def main():
+    play_count = 0
+    while(True):
+        play_count += 1
+        play_game()
+        is_continue = input("您還要繼續嗎(y,n)?")
+        if is_continue == "n":
+            break
+    print(f"您總共玩了{play_count}次")
+    print("遊戲結束")
+
+#規劃程式架構(主執行檔通常叫index.py,剩下的是module)
+if __name__ == "__main__":  #確認是執行主執行檔
+    main()
