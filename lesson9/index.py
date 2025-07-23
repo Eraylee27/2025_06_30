@@ -1,5 +1,4 @@
-import tools
-from tools import play_game,Empty    #這樣寫下面就寫成play_game()即可,不用寫tools.play_game()
+import box
         
 
 def main():
@@ -7,12 +6,12 @@ def main():
         play_count = 0
         while(True):
             play_count += 1
-            play_game()
+            box.play_game()
             is_continue = input("您還要繼續嗎(y,n)?")
             if is_continue == "n":
                 break
             
-        print(f"{tools.user_name}共玩了{play_count}次")
+        print(f"{box.user_name}共玩了{play_count}次")
         print("遊戲結束")
     except ValueError:
         print("格式錯誤")
