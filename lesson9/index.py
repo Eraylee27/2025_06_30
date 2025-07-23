@@ -1,48 +1,27 @@
-import random
-
-def play_game():
-    min = 1
-    max = 100
-    count = 0
-    guess_value = random.randint(min,max)
-    print("==========猜數字遊戲===========\n")
-    while(True):
-        try:
-            count += 1
-            keyin = int(input(f"猜數字範圍{min}~{max}:"))            
-            if keyin >= min and keyin <= max:
-                if(keyin == guess_value):
-                    print(f"賓果!猜對了,答案是:{guess_value}")
-                    print(f"您猜了{count}次")
-                    break
-                elif keyin > guess_value:
-                    print("再小一點!")
-                    max = keyin - 1
-                
-                else:
-                    print("再大一點")
-                    min = keyin + 1
-
-                print(f"您已經猜{count}次")
-                
-            else:
-                print("請輸入提示範圍內的數字")
-        except ValueError:
-            print("格式錯誤")
-        except Exception as e:
-            print(e)
+import tools
+from tools import play_game,Empty    #這樣寫下面就寫成play_game()即可,不用寫tools.play_game()
+        
 
 def main():
-    play_count = 0
-    while(True):
-        play_count += 1
-        play_game()
-        is_continue = input("您還要繼續嗎(y,n)?")
-        if is_continue == "n":
-            break
-    print(f"您總共玩了{play_count}次")
-    print("遊戲結束")
+    try:
+        play_count = 0
+        while(True):
+            play_count += 1
+            play_game()
+            is_continue = input("您還要繼續嗎(y,n)?")
+            if is_continue == "n":
+                break
+            
+        print(f"{tools.user_name}共玩了{play_count}次")
+        print("遊戲結束")
+    except ValueError:
+        print("格式錯誤")
+        print("應用程式中斷")        
+    except Exception as e:
+        print(e)
+        print("應用程式中斷")
+    
 
-#規劃程式架構(主執行檔通常叫index.py,剩下的是module)
-if __name__ == "__main__":  #確認是執行主執行檔
+
+if __name__ == "__main__":
     main()
