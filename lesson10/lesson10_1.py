@@ -5,7 +5,7 @@ def get_bmi()->float:
     return
     bmi的值
     '''
-    
+
     height = float(input('請輸入身高120-250cm):'))
     if not (120 <= height <= 250):
         raise Exception('身高範圍輸入錯誤')
@@ -33,13 +33,19 @@ def get_status(bmi):
         print('👉您的BMI為',x)
 
 def main():
-    try:
-        bmi = get_bmi()
-        get_status(bmi)
-    except ValueError:
-        print("格式錯誤")
-    except Exception as e:
-        print(e) 
+    while (True):
+        try:
+            bmi = get_bmi()
+            get_status(bmi)
+        except ValueError:
+            print("格式錯誤")
+            continue
+        except Exception as e:
+            print(e) 
+            continue
+        finally:
+            print("======應用程式結束======")
+            break
 
 if __name__ == "__main__":
     main()
