@@ -16,26 +16,37 @@ def sample_names_from_file(file_name: str, nums: int = 1) -> list[str]:
     回傳:
         list[str]: 隨機取出的姓名列表。
     """
-    with open(file_name, encoding="utf-8") as file:
-        content: str = file.read()
-        names: list[str] = content.split()
-        return random.sample(names, nums)
+    try:
+        with open(file_name, encoding="utf-8") as file:
+            content: str = file.read()
+            names: list[str] = content.split()
+            if len(names) < nums:
+                raise ValueError("檔案中的姓名數量不足")
+            return random.sample(names, nums)
+    except FileNotFoundError:
+        print(f"檔案 {file_name} 不存在")
+        return []
+    except ValueError as e:
+        print(e)
+        return []
 
-def generate_scores_for_names(names: list[str]) -> list[dict]:
+def generate_scores_for_names(names: list[str], min_score: int = 50, max_score: int = 100) -> list[dict]:
     """
     為每個姓名生成3個隨機分數。
 
     參數:
         names (list[str]): 姓名列表。
+        min_score (int): 最低分數，預設為50。
+        max_score (int): 最高分數，預設為100。
 
     回傳:
         list[dict]: 包含姓名和3個隨機分數的2維列表。
     """
     result_list = []
     for person_name in names:
-        student_scores:dict = {"姓名":person_name}
+        student_scores: dict = {"姓名": person_name}
         for subject in ["國文", "英文", "數學"]:
-            student_scores[subject] = random.randint(50, 100) 
+            student_scores[subject] = random.randint(min_score, max_score)
         result_list.append(student_scores)
 
     return result_list
@@ -49,12 +60,12 @@ def print_student_scores(students: list[dict]):
         None
     '''    
     print("學生成績表:")
-    print("姓名\t國文\t英文\t數學\t平均")
+    print("姓名".ljust(10) + "國文".ljust(10) + "英文".ljust(10) + "數學".ljust(10) + "平均")
     for student in students:
         name = student["姓名"]
         scores:list[int] = [student[subject] for subject in ["國文", "英文", "數學"]]        
         average = sum(scores) / len(scores)
-        print(f"{name}\t{scores[0]}\t{scores[1]}\t{scores[2]}\t{average:.2f}")
+        print(f"{name.ljust(10)}{str(scores[0]).ljust(10)}{str(scores[1]).ljust(10)}{str(scores[2]).ljust(10)}{average:.2f}")
 
 def analyze_scores(students: list[dict]):
     '''列印全班成績分析，包括平均分數、最高分學生及最低分學生。
