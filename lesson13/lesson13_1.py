@@ -2,7 +2,6 @@
 #讀取names.txt
 #請隨機取出3個名字
 import random
-from pprint import pprint   #方便將資料美美地印出來(pretty print)
 
 def sample_names_from_file(file_name: str, nums: int = 1) -> list[str]:
     """
@@ -39,11 +38,27 @@ def generate_scores_for_names(names: list[str]) -> list[dict]:
 
     return result_list
 
+def print_student_scores(students: list[dict]):
+    """
+    列印出學生姓名和分數,並且增加平均分數
+    參數:
+        students (list[dict]): 包含學生姓名和分數的列表，每個元素是一個字典。
+    回傳:
+        None
+    """
+    print("學生成果表:")
+    print("姓名\t國文\t英文\t數學\t平均")
+    for student in students:
+        name = student["姓名"]
+        scores:list[int] = [student[subject] for subject in ["國文", "英文", "數學"]]
+        average = sum(scores) / len(scores)
+        print(f" {name}\t{scores[0]}\t{scores[1]}\t{scores[2]}\t{average:.2f}")
+
 def main():
     print("===學生管理系統===\n\n")
     names: list[str] = sample_names_from_file("names.txt", nums=3)
     students: list[dict] = generate_scores_for_names(names)
-    pprint(students)
+    print_student_scores(students)
 
 if __name__ == "__main__":
     main()
