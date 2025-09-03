@@ -1,2 +1,2 @@
 # 執行終端機前請先進入conda的虛擬環境
-- conda activate data
+- 請先執行"conda activate data"
