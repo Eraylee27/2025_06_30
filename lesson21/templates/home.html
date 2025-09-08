@@ -3,48 +3,76 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Flask網站</title>
-    <!-- Bootstrap CSS -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    <!-- 自定義 CSS -->
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <title>Flask 網站</title>
+    <style>
+        body {
+            font-family: '微軟正黑體', Arial, sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 20px;
+            background: #f7f7f7;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+            border-radius: 5px;
+            background: #fff;
+        }
+        h1 {
+            color: #333;
+            text-align: center;
+        }
+        .content {
+            margin-top: 20px;
+        }
+        /* 三欄佈局 */
+        .columns {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 16px;
+        }
+        .column {
+            border-radius: 4px;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+            padding: 12px;
+            background: #fff;
+        }
+        @media (max-width: 800px) {
+            .container {
+                padding: 16px;
+            }
+        }
+        @media (max-width: 600px) {
+            .columns {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
 </head>
 <body>
-    <!-- 導覽列 -->
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-        <div class="container">
-            <a class="navbar-brand" href="{{ url_for('home') }}">我的網站</a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav">
-                    <li class="nav-item">
-                        <a class="nav-link active" href="{{ url_for('home') }}">首頁</a>
-                    </li>
-                </ul>
+    <div class="container">
+        <h1>歡迎來到我的 Flask 網站</h1>
+        <div class="content">
+            <div class="columns">
+                <div class="column">
+                    <h2>欄位一</h2>
+                    <p>這是一欄的內容，可以放文字或圖片。</p>
+                </div>
+                <div class="column">
+                    <h2>欄位二</h2>
+                    <p>第二欄的內容，示範響應式三欄佈局。</p>
+                </div>
+                <div class="column">
+                    <h2>欄位三</h2>
+                    <p>第三欄，用於顯示額外資訊或連結。</p>
+                </div>
             </div>
-        </div>
-    </nav>
 
-    <!-- 主要內容 -->
-    <div class="container mt-4">
-        <div class="row">
-            <div class="col-md-12">
-                <h1 class="mb-4">歡迎來到我的網站</h1>
-                <p class="lead">這是一個使用 Flask 建立的網站。</p>
-            </div>
+            <p>這是一個使用 Flask 建立的基本網站。</p>
+            <p>您可以在這裡添加更多內容。</p>
         </div>
     </div>
-
-    <!-- 頁尾 -->
-    <footer class="footer mt-auto py-3 bg-light">
-        <div class="container text-center">
-            <span class="text-muted">© 2025 我的網站</span>
-        </div>
-    </footer>
-
-    <!-- Bootstrap JS -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
